@@ -929,3 +929,28 @@ button:disabled {
   flex-shrink: 0;
   padding-bottom: env(safe-area-inset-bottom);
 }
+
+.player-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-header .flower-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.btn-3d {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 22px;
+  background-color: var(--flower-colour, var(--accent-color));
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
