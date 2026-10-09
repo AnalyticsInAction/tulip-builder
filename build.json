@@ -1,0 +1,24 @@
+{
+  "set": { "number": "11501", "name": "Tulip Bouquet", "pieces": 576, "totalFlowers": 14 },
+  "intro": [
+    { "title": "Cover", "pages": ["b1-001"] },
+    { "title": "About the tulips", "pages": ["b1-004", "b1-005", "b1-006", "b1-007"] },
+    { "title": "Brick separator", "pages": ["b1-008"] },
+    { "title": "Parts list", "pages": ["b1-047"] }
+  ],
+  "flowers": [
+    { "id": "red-1",    "name": "Red tulip, curved leaf",    "colour": "#d9261c", "bag": 1, "booklet": 1, "count": 1, "pages": ["b1-009", "b1-010", "b1-011", "b1-012", "b1-013"] },
+    { "id": "red-2",    "name": "Red tulip, tall leaf",      "colour": "#d9261c", "bag": 1, "booklet": 1, "count": 1, "pages": ["b1-014", "b1-015", "b1-016", "b1-017", "b1-018", "b1-019"] },
+    { "id": "orange-1", "name": "Orange tulip",              "colour": "#f28c1e", "bag": 2, "booklet": 1, "count": 1, "pages": ["b1-020", "b1-021", "b1-022", "b1-023"] },
+    { "id": "orange-2", "name": "Orange tulip, tall leaf",   "colour": "#f28c1e", "bag": 2, "booklet": 1, "count": 1, "pages": ["b1-024", "b1-025", "b1-026", "b1-027", "b1-028", "b1-029", "b1-030"] },
+    { "id": "yellow-1", "name": "Yellow tulip, curved leaf", "colour": "#f5c518", "bag": 3, "booklet": 1, "count": 1, "pages": ["b1-031", "b1-032", "b1-033", "b1-034", "b1-035"] },
+    { "id": "yellow-2", "name": "Yellow tulip, small leaf",  "colour": "#f5c518", "bag": 3, "booklet": 1, "count": 1, "pages": ["b1-036", "b1-037", "b1-038", "b1-039", "b1-040"] },
+    { "id": "yellow-3", "name": "Yellow tulip, tall leaf",   "colour": "#f5c518", "bag": 3, "booklet": 1, "count": 1, "pages": ["b1-041", "b1-042", "b1-043", "b1-044", "b1-045", "b1-046"] },
+    { "id": "bud",      "name": "Green buds (build two)",    "colour": "#b9d989", "bag": 4, "booklet": 2, "count": 2, "pages": ["b2-002", "b2-003", "b2-004", "b2-005"] },
+    { "id": "purple-1", "name": "Purple tulip, curved leaf", "colour": "#5b3f9e", "bag": 4, "booklet": 2, "count": 1, "pages": ["b2-006", "b2-007", "b2-008", "b2-009", "b2-010"] },
+    { "id": "purple-2", "name": "Purple tulip, tall leaf",   "colour": "#5b3f9e", "bag": 4, "booklet": 2, "count": 1, "pages": ["b2-011", "b2-012", "b2-013", "b2-014", "b2-015", "b2-016", "b2-017"] },
+    { "id": "pink-1",   "name": "Pink tulip, small leaf",    "colour": "#f29ac0", "bag": 5, "booklet": 2, "count": 1, "pages": ["b2-018", "b2-019", "b2-020", "b2-021", "b2-022", "b2-023", "b2-024"] },
+    { "id": "pink-2",   "name": "Pink tulip",                "colour": "#f29ac0", "bag": 5, "booklet": 2, "count": 1, "pages": ["b2-025", "b2-026", "b2-027", "b2-028"] },
+    { "id": "pink-3",   "name": "Pink tulip, curved leaf",   "colour": "#f29ac0", "bag": 5, "booklet": 2, "count": 1, "pages": ["b2-029", "b2-030", "b2-031", "b2-032", "b2-033", "b2-034"] }
+  ]
+}

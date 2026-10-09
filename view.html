@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Tulip Bouquet progress</title>
+  <style>
+    :root {
+      --bg: #fbf7f2;
+      --card: #ffffff;
+      --text: #2a2420;
+      --muted: #6f655d;
+      --line: #e6ddd3;
+      --track: #ece4da;
+      --accent: #c2417c;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1b1816;
+        --card: #26221f;
+        --text: #f4ede6;
+        --muted: #b3a79c;
+        --line: #3a342f;
+        --track: #332d29;
+        --accent: #f29ac0;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font: 18px/1.5 Georgia, 'Times New Roman', serif;
+      padding: 24px 16px calc(40px + env(safe-area-inset-bottom));
+    }
+    main { max-width: 640px; margin: 0 auto; }
+    h1 { font-size: 30px; line-height: 1.2; }
+    h2 { font-size: 20px; margin: 32px 0 12px; }
+    .muted { color: var(--muted); font-size: 16px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-top: 16px; }
+    .big { font-size: 44px; font-weight: bold; line-height: 1.1; }
+    .bar { height: 18px; border-radius: 9px; background: var(--track); overflow: hidden; margin: 12px 0 8px; }
+    .bar > div { height: 100%; width: 0; border-radius: 9px; background: var(--accent); transition: width .6s; }
+    .now { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .swatch { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); }
+    .flowers { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 14px; }
+    .flower { aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--c); opacity: .45; }
+    .flower.built { background: var(--c); opacity: 1; }
+    .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    figure { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    figure button { display: block; width: 100%; padding: 0; border: 0; background: var(--track); cursor: zoom-in; aspect-ratio: 1; }
+    figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    figcaption { padding: 8px 10px 10px; font-size: 15px; line-height: 1.35; }
+    figcaption .note { font-style: italic; }
+    .refresh { font: inherit; font-size: 16px; min-height: 44px; padding: 8px 18px; border-radius: 22px; border: 1px solid var(--line); background: var(--card); color: var(--text); cursor: pointer; margin-top: 28px; }
+    dialog { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; }
+    dialog::backdrop { background: rgba(0, 0, 0, .85); }
+    dialog img { display: block; max-width: 96vw; max-height: 92vh; border-radius: 8px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Tulip Bouquet</h1>
+    <p id="updated" class="muted">Loading…</p>
+
+    <section id="summary" class="card" hidden>
+      <div><span id="count" class="big">0</span> <span class="muted">of 14 tulips built</span></div>
+      <div class="bar" role="img" aria-label="Progress"><div id="bar"></div></div>
+      <div id="flowers" class="flowers"></div>
+      <div class="now">
+        <span id="now-swatch" class="swatch"></span>
+        <span id="now-text"></span>
+      </div>
+    </section>
+
+    <section id="photo-section" hidden>
+      <h2>Photos</h2>
+      <p id="photo-empty" class="muted" hidden>No photos yet.</p>
+      <div id="photos" class="photos"></div>
+    </section>
+
+    <button id="refresh" class="refresh" hidden>Check for news</button>
+  </main>
+
+  <dialog id="viewer"><img id="viewer-image" alt="Photo of the build"></dialog>
+
+  <script type="module" src="js/view.js"></script>
+</body>
+</html>
