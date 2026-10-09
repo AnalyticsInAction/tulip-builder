@@ -412,6 +412,7 @@ async function main() {
 
   // test hooks: ?t=<seconds>&az=<deg>&el=<deg> shows one moment without the start screen
   window.tulip = { seek, get total() { return total; }, get buildEnd() { return buildEnd; }, stepStart, setBloom: (b) => { bloomManual = b; } };
+  if (params.has('still')) document.body.classList.add('still'); // a clean picture, with no controls
   if (params.has('t')) {
     started = false;
     seek(parseFloat(params.get('t')));

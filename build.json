@@ -7,7 +7,7 @@
     { "title": "Parts list", "pages": ["b1-047"] }
   ],
   "flowers": [
-    { "id": "red-1",    "name": "Red tulip, curved leaf",    "colour": "#d9261c", "model3d": "3d.html", "bag": 1, "booklet": 1, "count": 1, "pages": ["b1-009", "b1-010", "b1-011", "b1-012", "b1-013"] },
+    { "id": "red-1",    "name": "Red tulip, curved leaf",    "colour": "#d9261c", "bag": 1, "booklet": 1, "count": 1, "pages": ["b1-009", "b1-010", "b1-011", "b1-012", "b1-013"] },
     { "id": "red-2",    "name": "Red tulip, tall leaf",      "colour": "#d9261c", "bag": 1, "booklet": 1, "count": 1, "pages": ["b1-014", "b1-015", "b1-016", "b1-017", "b1-018", "b1-019"] },
     { "id": "orange-1", "name": "Orange tulip",              "colour": "#f28c1e", "bag": 2, "booklet": 1, "count": 1, "pages": ["b1-020", "b1-021", "b1-022", "b1-023"] },
     { "id": "orange-2", "name": "Orange tulip, tall leaf",   "colour": "#f28c1e", "bag": 2, "booklet": 1, "count": 1, "pages": ["b1-024", "b1-025", "b1-026", "b1-027", "b1-028", "b1-029", "b1-030"] },

@@ -47,7 +47,6 @@ function setupDOM() {
         <h2 id="flower-name"></h2>
         <div id="flower-meta"></div>
       </div>
-      <a id="btn-3d" class="btn-3d" hidden>▶ Watch it built in 3D</a>
     </div>
 
     <div class="player-image-area">
@@ -138,9 +137,6 @@ function render() {
   $('flower-name').textContent = flower.name;
   $('flower-meta').textContent = `Bag ${flower.bag} · Page ${idx + 1} of ${pageSequence.length}` +
     (built >= flower.count ? ' · Built ✓' : '');
-
-  $('btn-3d').hidden = !flower.model3d;
-  if (flower.model3d) $('btn-3d').href = flower.model3d;
 
   showPage(pageId);
   if (idx + 1 < pageSequence.length) preload(pageSequence[idx + 1].pageId);
