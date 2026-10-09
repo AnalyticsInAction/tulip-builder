@@ -68,7 +68,10 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  /* dvh: the visible height on phones, so the tab bar is not hidden behind the browser's own bars */
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -774,43 +777,18 @@ button:disabled {
   background-color: var(--button-bg);
 }
 
-/* Tablets and desktop */
+/* Tablets and desktop: same layout as a phone, centred and not too wide */
 @media (min-width: 768px) {
-  #player-content {
-    flex-direction: row;
-  }
-
-  .player-header {
-    flex-direction: column;
-    width: 280px;
-    height: 100%;
-    overflow-y: auto;
+  #app {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
-    border-bottom: none;
   }
 
-  .player-image-area {
-    flex: 1;
-  }
-
-  .player-controls {
-    position: fixed;
-    bottom: 60px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .control-row button {
-    flex: 1;
-    min-width: auto;
-  }
-
-  .tab-nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  .flower-info h2 {
+    font-size: 22px;
   }
 
   .photos-grid {
@@ -945,4 +923,9 @@ button:disabled {
 .share-message {
   min-height: 1.4em;
   color: var(--text-secondary);
+}
+
+.tab-nav {
+  flex-shrink: 0;
+  padding-bottom: env(safe-area-inset-bottom);
 }
