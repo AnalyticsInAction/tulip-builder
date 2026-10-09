@@ -25,6 +25,8 @@ const BLOOM_TIME = 7;     // the finale: petals open and close once
 
 async function loadBundle() {
   if (params.has('dev')) return (await fetch('models/red-tulip.bundle.json')).json();
+  // the public page (tulip.html) carries an unencrypted copy of the model and needs no family link
+  if (document.documentElement.hasAttribute('data-public')) return (await fetch('models/red-tulip.json')).json();
   const key = await loadFamilyKey();
   if (!key) throw new Error('This is a private family page. Open it with the family link to unlock it.');
   const res = await fetch('models/red-tulip.bin');

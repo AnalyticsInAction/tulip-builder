@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-public>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Red tulip in 3D</title>
+  <style>
+    :root { --ink: #f6f1ea; --soft: rgba(246, 241, 234, .68); --panel: rgba(16, 22, 26, .74); --line: rgba(255, 255, 255, .14); --accent: #ff5a4d; }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body { font: 16px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--ink);
+      background: radial-gradient(120% 90% at 50% 38%, #47606a 0%, #26343b 45%, #10161a 100%); }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+    button, select, input { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+
+    .top { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items: flex-start; gap: 12px;
+      padding: calc(10px + env(safe-area-inset-top)) 14px 0; pointer-events: none; }
+    .top > * { pointer-events: auto; }
+    .back { flex: none; min-height: 44px; padding: 10px 14px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line);
+      text-decoration: none; color: var(--ink); backdrop-filter: blur(8px); }
+    .title { flex: 1; min-width: 0; text-align: right; text-shadow: 0 1px 8px rgba(0, 0, 0, .5); }
+    .title h1 { font-size: 20px; line-height: 1.2; }
+    .title p { color: var(--soft); font-size: 14px; }
+
+    .panel { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, rgba(10, 14, 17, .92) 55%, rgba(10, 14, 17, 0)); }
+    .inner { max-width: 760px; margin: 0 auto; }
+    .caption { min-height: 2.8em; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 6px; text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
+    .caption strong { font-size: 18px; }
+    .caption span { color: var(--soft); font-size: 14px; }
+    .steps { display: flex; gap: 6px; margin-bottom: 4px; }
+    .steps button { flex: 1; min-width: 0; height: 30px; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: rgba(255, 255, 255, .07); cursor: pointer; font-size: 14px; }
+    .steps button.done { background: rgba(255, 90, 77, .32); }
+    .steps button.now { background: var(--accent); border-color: var(--accent); color: #1b0b09; font-weight: 700; }
+    input[type=range] { width: 100%; height: 34px; accent-color: var(--accent); background: transparent; }
+    .row { display: flex; gap: 8px; align-items: center; }
+    .row button, .row select { min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255, 255, 255, .09); cursor: pointer; }
+    .row button { flex: 1; min-width: 0; font-size: 20px; }
+    .row button:active { background: rgba(255, 255, 255, .2); }
+    .row #play { flex: 1.6; background: var(--accent); border-color: var(--accent); color: #1b0b09; font-weight: 700; }
+    .row select { flex: none; padding: 0 8px; background-color: #1b2429; }
+    .bloom { display: flex; align-items: center; gap: 10px; margin-top: 6px; color: var(--soft); font-size: 14px; }
+    .bloom input { flex: 1; }
+
+    .start { position: fixed; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; background: rgba(10, 14, 17, .35); }
+    .start div { max-width: 420px; }
+    .start h2 { font-size: 30px; line-height: 1.15; margin-bottom: 8px; text-shadow: 0 2px 14px rgba(0, 0, 0, .6); }
+    .start p { color: var(--soft); margin-bottom: 20px; text-shadow: 0 1px 8px rgba(0, 0, 0, .6); }
+    .start button { min-height: 60px; padding: 0 34px; border: 0; border-radius: 30px; background: var(--accent); color: #1b0b09; font-size: 20px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 30px rgba(255, 90, 77, .45); }
+    .credit { margin: 18px 0 0 !important; font-size: 12px; line-height: 1.45; }
+    .message { position: fixed; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--soft); }
+  </style>
+</head>
+<body>
+  <canvas id="stage"></canvas>
+
+  <div class="top">
+    <span></span>
+    <div class="title">
+      <h1 id="step-title">Red tulip</h1>
+      <p id="step-count"></p>
+    </div>
+  </div>
+
+  <div id="message" class="message">Loading the bricks…</div>
+
+  <div id="start" class="start" hidden>
+    <div>
+      <h2>Build the red tulip, brick by brick</h2>
+      <p>Drag to look around. Pinch or scroll to zoom.</p>
+      <button id="start-button">▶ Start building</button><p class="credit">An unofficial, fan-made model. LEGO® is a trademark of the LEGO Group, which does not sponsor, authorise or endorse this page. Part shapes from the LDraw parts library (CC BY 4.0).</p>
+    </div>
+  </div>
+
+  <div id="panel" class="panel" hidden>
+    <div class="inner">
+      <div class="caption"><strong id="part-name"></strong><span id="part-count"></span></div>
+      <div id="steps" class="steps"></div>
+      <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Build progress">
+      <div class="row">
+        <button id="prev" aria-label="Previous step">⏮</button>
+        <button id="reverse" aria-label="Play backwards">◀</button>
+        <button id="play" aria-label="Play or pause">▶</button>
+        <button id="next" aria-label="Next step">⏭</button>
+        <select id="speed" aria-label="Speed">
+          <option value="0.5">½×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+          <option value="4">4×</option>
+        </select>
+        <button id="sound" aria-label="Sound on or off" style="flex:.7">🔊</button>
+      </div>
+      <label id="bloom-row" class="bloom" hidden>Open the petals <input id="bloom" type="range" min="0" max="100" value="0"></label>
+    </div>
+  </div>
+
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script>
+  <script type="module" src="js/tulip3d.js"></script>
+</body>
+</html>
